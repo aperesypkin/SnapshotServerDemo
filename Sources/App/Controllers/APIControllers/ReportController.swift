@@ -48,7 +48,7 @@ final class ReportController: RouteCollection {
             do {
                 try snapshot.reference.data.write(to: saveURL)
                 
-                let path = "http://localhost:8080/snapshots/" + "\(name)"
+                let path = "https://snapshot-server-demo.herokuapp.com/snapshots/" + "\(name)"
                 let snapshot = Snapshot(title: snapshot.title,
                                         reference: path,
                                         failure: path,
