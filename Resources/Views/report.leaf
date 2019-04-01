@@ -1,0 +1,74 @@
+#set("content") {
+  <h1>test</h1>
+  <div class="accordion" id="accordionExample">
+    #for(report in reportList) {
+
+
+      <div class="card">
+    <div class="card-header" id="heading#(report.id)">
+      <h2 class="mb-0">
+        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse#(report.id)" aria-expanded="true" aria-controls="collapse#(report.id)">
+          #(report.title)
+        </button>
+      </h2>
+    </div>
+
+
+    <div id="collapse#(report.id)" class="collapse" aria-labelledby="heading#(report.id)" data-parent="#accordionExample">
+      <div class="card-body">
+
+
+        <div class="accordion" id="accordionExample2">
+          #for(snapshot in report.snapshots) {
+
+
+            <div class="card">
+          <div class="card-header" id="heading2#(snapshot.id)">
+            <h2 class="mb-0">
+              <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse2#(snapshot.id)" aria-expanded="true" aria-controls="collapse2#(snapshot.id)">
+                #(snapshot.title)
+              </button>
+            </h2>
+          </div>
+
+
+          <div id="collapse2#(snapshot.id)" class="collapse" aria-labelledby="heading2#(snapshot.id)" data-parent="#accordionExample2">
+            <div class="card-body">
+
+              <!-- <img src="#(snapshot.reference)" class="mx-auto d-block" /> -->
+
+              <div class="d-flex flex-row">
+                <div class="p-2">
+                  <a href="#(snapshot.reference)" target="_blank"><img src="#(snapshot.reference)" class="w-100"></a>
+                </div>
+                <div class="p-2">
+                  <a href="#(snapshot.failure)" target="_blank"><img src="#(snapshot.failure)" class="w-100"></a>
+                </div>
+                <div class="p-2">
+                  <a href="#(snapshot.diff)" target="_blank"><img src="#(snapshot.diff)" class="w-100"></a>
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+
+
+          }
+        </div>
+
+
+
+
+
+
+      </div>
+    </div>
+  </div>
+
+
+    }
+  </div>
+}
+#embed("base")
